@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nexora Academy — Free Demo Class</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#b8976a;--gold2:#d4b483;--gold3:#e8d5b0;--ink:#07070c;--cream:#f0ece3;--muted:rgba(120,115,104,0.9);--border:rgba(184,151,106,0.12);}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--cream);min-height:100vh;overflow-x:hidden;cursor:none;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 900px 400px at 50% -60px,rgba(184,151,106,0.08) 0%,transparent 70%),radial-gradient(ellipse 400px 600px at 90% 60%,rgba(26,107,88,0.04) 0%,transparent 60%);pointer-events:none;z-index:0;}
+
+.cur{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen;}
+.cur-r{position:fixed;width:30px;height:30px;border:1px solid rgba(184,151,106,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s;}
+
+.page{position:relative;z-index:1;max-width:600px;margin:0 auto;padding:48px 20px 80px;}
+
+/* HERO */
+.hero{text-align:center;margin-bottom:40px;animation:up 1s cubic-bezier(.16,1,.3,1) both;}
+.logo-ring{position:relative;width:72px;height:72px;margin:0 auto 22px;display:flex;align-items:center;justify-content:center;}
+.ring1{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(184,151,106,0.2);animation:rspin 12s linear infinite;}
+.ring2{position:absolute;inset:9px;border-radius:50%;border:1px solid rgba(184,151,106,0.1);animation:rspin 8s linear infinite reverse;}
+.ring1::before{content:'';position:absolute;width:5px;height:5px;background:var(--gold);border-radius:50%;top:-2.5px;left:50%;transform:translateX(-50%);box-shadow:0 0 8px var(--gold);}
+.ring2::after{content:'';position:absolute;width:4px;height:4px;background:#4ecdb4;border-radius:50%;bottom:-2px;right:6px;box-shadow:0 0 6px #4ecdb4;}
+@keyframes rspin{to{transform:rotate(360deg)}}
+.logo-core{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,rgba(184,151,106,0.15),rgba(184,151,106,0.04));border:1px solid rgba(184,151,106,0.32);display:flex;align-items:center;justify-content:center;position:relative;z-index:2;}
+.logo-n{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--gold2);font-style:italic;}
+.brand-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:3px;}
+.brand-name{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:300;letter-spacing:.34em;text-transform:uppercase;color:rgba(232,213,176,0.65);}
+.brand-dot{width:3px;height:3px;border-radius:50%;background:rgba(184,151,106,0.35);}
+.brand-city{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:rgba(120,115,104,0.55);}
+.live-badge{display:inline-flex;align-items:center;gap:7px;margin:16px 0 18px;border:1px solid rgba(184,151,106,0.22);border-radius:100px;padding:5px 14px;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(212,180,131,0.75);background:rgba(184,151,106,0.03);}
+.ldot{width:5px;height:5px;border-radius:50%;background:#e05a2b;box-shadow:0 0 5px #e05a2b;animation:ldp 1.6s infinite;}
+@keyframes ldp{0%,100%{opacity:1}50%{opacity:.2}}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,6vw,42px);font-weight:300;line-height:1.18;color:#f0ece3;margin-bottom:10px;}
+.hero h1 strong{font-weight:500;}
+.hero h1 em{font-style:italic;color:#c9a96e;}
+.hero p{font-size:13px;font-weight:300;color:rgba(120,115,104,0.85);line-height:1.8;max-width:310px;margin:0 auto 22px;}
+.stats{display:flex;justify-content:center;border:1px solid rgba(184,151,106,0.1);border-radius:12px;overflow:hidden;}
+.stat{flex:1;padding:13px 8px;text-align:center;border-right:1px solid rgba(184,151,106,0.1);}
+.stat:last-child{border-right:none;}
+.stat-v{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--gold2);line-height:1;}
+.stat-l{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(120,115,104,0.65);margin-top:3px;}
+
+/* CARD */
+.card{background:rgba(255,255,255,0.022);border:1px solid rgba(184,151,106,0.09);border-radius:18px;padding:36px 32px;animation:up 1s .2s cubic-bezier(.16,1,.3,1) both;backdrop-filter:blur(20px);}
+
+.sdiv{display:flex;align-items:center;gap:12px;margin:26px 0 18px;}
+.sdiv::before,.sdiv::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(184,151,106,0.25),transparent);}
+.sdiv-d{width:5px;height:5px;background:rgba(184,151,106,0.45);transform:rotate(45deg);flex-shrink:0;}
+.sdiv span{font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:rgba(184,151,106,0.65);white-space:nowrap;}
+
+.f{margin-bottom:14px;}
+.f label{display:block;font-size:9.5px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:rgba(122,115,104,0.8);margin-bottom:7px;}
+.req{color:var(--gold);}
+.f input,.f select,.f textarea{width:100%;padding:12px 14px;background:rgba(255,255,255,0.025);border:1px solid rgba(184,151,106,0.1);border-radius:8px;color:#f0ece3;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:300;outline:none;-webkit-appearance:none;appearance:none;transition:all .3s;}
+.f input::placeholder,.f textarea::placeholder{color:rgba(200,190,175,.14);}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:rgba(184,151,106,.38);background:rgba(184,151,106,.025);box-shadow:0 0 0 3px rgba(184,151,106,.05);}
+.f input.err{border-color:rgba(200,60,60,.45);}
+.f select option{background:#0d0d14;}
+.f textarea{resize:vertical;min-height:80px;line-height:1.65;}
+.sw{position:relative;}
+.sw::after{content:'';position:absolute;right:14px;top:50%;transform:translateY(-50%);border:4px solid transparent;border-top:5px solid rgba(122,115,104,.55);pointer-events:none;}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.char-wrap{position:relative;}
+.char-hint{position:absolute;right:11px;bottom:9px;font-size:9px;color:rgba(120,115,104,.35);pointer-events:none;}
+
+.rg{display:flex;flex-direction:column;gap:7px;}
+.ro{display:flex;align-items:center;gap:12px;padding:11px 14px;border:1px solid rgba(184,151,106,.09);border-radius:8px;cursor:none;transition:all .22s;position:relative;overflow:hidden;}
+.ro::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(184,151,106,.055),transparent);opacity:0;transition:opacity .22s;}
+.ro:hover::before,.ro.sel::before{opacity:1;}
+.ro:hover{border-color:rgba(184,151,106,.22);}
+.ro.sel{border-color:rgba(184,151,106,.4);}
+.ro input{display:none;}
+.rd{width:16px;height:16px;border-radius:50%;border:1.5px solid rgba(184,151,106,.26);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:border-color .22s;position:relative;z-index:1;}
+.ro.sel .rd{border-color:var(--gold);}
+.rd::after{content:'';width:7px;height:7px;border-radius:50%;background:var(--gold);opacity:0;transform:scale(0);transition:all .25s cubic-bezier(.34,1.56,.64,1);}
+.ro.sel .rd::after{opacity:1;transform:scale(1);}
+.rt{font-size:12.5px;font-weight:300;color:#c8c0b4;line-height:1.35;position:relative;z-index:1;}
+.rtag{font-size:9px;letter-spacing:.08em;color:rgba(184,151,106,.55);display:block;margin-top:1px;}
+
+.cg{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+.co{padding:6px 12px;border:1px solid rgba(184,151,106,.1);border-radius:100px;font-size:11.5px;color:rgba(120,115,104,.85);cursor:none;transition:all .2s;user-select:none;position:relative;overflow:hidden;}
+.co::before{content:'';position:absolute;inset:0;background:rgba(184,151,106,.08);opacity:0;transition:opacity .2s;}
+.co:hover::before{opacity:1;}
+.co:hover{border-color:rgba(184,151,106,.26);color:#d8d0c4;}
+.co.on{border-color:var(--gold);color:var(--gold2);}
+.co.on::before{opacity:1;}
+.co input{display:none;}
+
+.prog-wrap{margin-top:20px;}
+.prog-top{display:flex;justify-content:space-between;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(120,115,104,.45);margin-bottom:6px;}
+.prog-track{height:1px;background:rgba(184,151,106,.1);border-radius:1px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,rgba(184,151,106,.35),rgba(212,180,131,.8));border-radius:1px;width:0%;transition:width .5s cubic-bezier(.16,1,.3,1);}
+
+.btn-wrap{margin-top:26px;}
+.btn{width:100%;padding:16px 28px;background:transparent;border:1px solid rgba(184,151,106,.45);border-radius:8px;color:var(--gold3);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;cursor:none;position:relative;overflow:hidden;transition:color .3s,border-color .3s;}
+.btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--gold),var(--gold2));opacity:0;transition:opacity .35s;}
+.btn:hover::before{opacity:1;}
+.btn:hover{color:var(--ink);border-color:transparent;}
+.btn:active{transform:scale(.99);}
+.btn:disabled{opacity:.5;}
+.btn span{position:relative;z-index:1;}
+.note{text-align:center;margin-top:12px;font-size:10.5px;color:rgba(100,95,88,.55);line-height:1.75;}
+
+.suc{display:none;text-align:center;padding:64px 32px;}
+.suc.show{display:block;animation:up .8s cubic-bezier(.16,1,.3,1) both;}
+.suc-ring{width:82px;height:82px;border-radius:50%;border:1px solid rgba(184,151,106,.22);margin:0 auto 24px;display:flex;align-items:center;justify-content:center;position:relative;}
+.suc-ring::before{content:'';position:absolute;inset:-9px;border-radius:50%;border:1px solid rgba(184,151,106,.08);animation:sp 2s ease infinite;}
+@keyframes sp{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.08);opacity:.35}}
+.si{font-size:36px;}
+.suc h2{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:#f0ece3;margin-bottom:12px;}
+.suc p{font-size:13px;font-weight:300;color:rgba(120,115,104,.85);line-height:1.8;max-width:270px;margin:0 auto 26px;}
+.stag{display:inline-flex;align-items:center;gap:8px;background:rgba(26,107,88,.08);border:1px solid rgba(26,107,88,.24);border-radius:100px;padding:9px 20px;font-size:11px;color:#4ecdb4;letter-spacing:.07em;}
+
+.foot{text-align:center;margin-top:44px;animation:up 1s .6s cubic-bezier(.16,1,.3,1) both;}
+.foot-line{height:1px;background:linear-gradient(90deg,transparent,rgba(184,151,106,.1),transparent);margin-bottom:14px;}
+.foot-txt{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(100,95,88,.3);}
+
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
+@media(max-width:480px){.card{padding:26px 18px;}.fr{grid-template-columns:1fr;}.hero h1{font-size:26px;}}
+</style>
+</head>
+<body>
+<div class="cur" id="c"></div>
+<div class="cur-r" id="cr"></div>
+<div class="page">
+
+  <div class="hero">
+    <div class="logo-ring"><div class="ring1"></div><div class="ring2"></div><div class="logo-core"><span class="logo-n">N</span></div></div>
+    <div class="brand-row"><span class="brand-name">Nexora</span><div class="brand-dot"></div><span class="brand-city">Academy · Chennai</span></div>
+    <div class="live-badge"><div class="ldot"></div>Enrolling now</div>
+    <h1>Your <em>Free</em> Python<br/><strong>Demo Class</strong> Awaits</h1>
+    <p>Live, intimate sessions for students aged 10–20. Real mentors. Real code. Real results.</p>
+    <div class="stats">
+      <div class="stat"><div class="stat-v">3</div><div class="stat-l">Seats left</div></div>
+      <div class="stat"><div class="stat-v">8</div><div class="stat-l">Per batch</div></div>
+      <div class="stat"><div class="stat-v">24h</div><div class="stat-l">Response</div></div>
+      <div class="stat"><div class="stat-v">Free</div><div class="stat-l">Demo class</div></div>
+    </div>
+  </div>
+
+  <div class="card" id="formCard">
+    <div class="sdiv"><div class="sdiv-d"></div><span>Parent Details</span><div class="sdiv-d"></div></div>
+    <div class="f"><label>Parent's Full Name <span class="req">*</span></label><input type="text" id="parentName" placeholder="e.g. Ramesh Kumar" oninput="upd()"/></div>
+    <div class="f"><label>WhatsApp Number <span class="req">*</span></label><input type="tel" id="phone" placeholder="+91 9XXXXXXXXX" maxlength="14" oninput="upd()"/></div>
+    <div class="f"><label>Email Address <span class="req">*</span></label><input type="email" id="email" placeholder="yourname@gmail.com" oninput="upd()"/></div>
+
+    <div class="sdiv"><div class="sdiv-d"></div><span>Student Details</span><div class="sdiv-d"></div></div>
+    <div class="f"><label>Student's Full Name <span class="req">*</span></label><input type="text" id="childName" placeholder="e.g. Arun Kumar" oninput="upd()"/></div>
+    <div class="fr">
+      <div class="f"><label>Age <span class="req">*</span></label><div class="sw"><select id="age" onchange="upd()"><option value="" disabled selected>Select age</option><option>10 years</option><option>11 years</option><option>12 years</option><option>13 years</option><option>14 years</option><option>15 years</option><option>16 years</option><option>17 years</option><option>18 years</option><option>19 years</option><option>20 years</option></select></div></div>
+      <div class="f"><label>Class / Year <span class="req">*</span></label><div class="sw"><select id="grade" onchange="upd()"><option value="" disabled selected>Select class</option><option>Class 5</option><option>Class 6</option><option>Class 7</option><option>Class 8</option><option>Class 9</option><option>Class 10</option><option>Class 11</option><option>Class 12</option><option>1st Year College</option><option>2nd Year College</option><option>3rd Year College</option></select></div></div>
+    </div>
+
+    <div class="sdiv"><div class="sdiv-d"></div><span>Experience Level</span><div class="sdiv-d"></div></div>
+    <div class="f"><label>Coding Experience <span class="req">*</span></label>
+      <div class="rg" id="expGroup">
+        <label class="ro" onclick="selR(this)"><input type="radio" name="exp" value="none"/><div class="rd"></div><div class="rt">Complete beginner<span class="rtag">No coding experience at all</span></div></label>
+        <label class="ro" onclick="selR(this)"><input type="radio" name="exp" value="little"/><div class="rd"></div><div class="rt">Tried a little<span class="rtag">Scratch, block coding, or basics</span></div></label>
+        <label class="ro" onclick="selR(this)"><input type="radio" name="exp" value="some"/><div class="rd"></div><div class="rt">Some Python experience<span class="rtag">Variables, loops, basics</span></div></label>
+      </div>
+    </div>
+
+    <div class="f"><label>How did you hear about us?</label>
+      <div class="cg">
+        <label class="co" onclick="tog(this)"><input type="checkbox"/>Instagram</label>
+        <label class="co" onclick="tog(this)"><input type="checkbox"/>WhatsApp</label>
+        <label class="co" onclick="tog(this)"><input type="checkbox"/>Friend / Family</label>
+        <label class="co" onclick="tog(this)"><input type="checkbox"/>School</label>
+        <label class="co" onclick="tog(this)"><input type="checkbox"/>YouTube</label>
+        <label class="co" onclick="tog(this)"><input type="checkbox"/>Other</label>
+      </div>
+    </div>
+
+    <div class="f char-wrap"><label>Any questions? <span style="text-transform:none;letter-spacing:0;font-size:11px;font-weight:300;color:rgba(120,115,104,.55)">(Optional)</span></label><textarea id="message" placeholder="Ask about the course, schedule, or anything else…" maxlength="300" oninput="upChar()"></textarea><span class="char-hint" id="cc">0 / 300</span></div>
+
+    <div class="prog-wrap"><div class="prog-top"><span>Completion</span><span id="pct">0%</span></div><div class="prog-track"><div class="prog-fill" id="pb"></div></div></div>
+
+    <div class="btn-wrap"><button class="btn" id="btn" onclick="go()"><span id="btxt">Reserve My Free Seat &nbsp;→</span></button></div>
+    <p class="note">Details sent directly & securely to our team only.<br/>Zero spam, always. We'll reach you on WhatsApp within 24 hours. 🔒</p>
+  </div>
+
+  <div class="suc" id="suc">
+    <div class="suc-ring"><div class="si">🎓</div></div>
+    <h2>You're Registered</h2>
+    <p>Our team has your details and will WhatsApp you the class link within 24 hours.</p>
+    <div class="stag">✓ &nbsp; Registration confirmed</div>
+  </div>
+
+  <div class="foot"><div class="foot-line"></div><div class="foot-txt">Nexora Academy &nbsp;·&nbsp; Est. 2024 &nbsp;·&nbsp; Chennai</div></div>
+</div>
+
+<script>
+const c=document.getElementById('c'),cr=document.getElementById('cr');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c.style.left=mx+'px';c.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('input,select,textarea,button,.ro,.co').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cr.style.width='44px';cr.style.height='44px';cr.style.borderColor='rgba(184,151,106,0.7)';});
+  el.addEventListener('mouseleave',()=>{cr.style.width='30px';cr.style.height='30px';cr.style.borderColor='rgba(184,151,106,0.4)';});
+});
+function selR(el){document.querySelectorAll('.ro').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');el.querySelector('input').checked=true;upd();}
+function tog(el){el.classList.toggle('on');}
+function shk(el){el.style.animation='none';el.offsetHeight;el.style.animation='shake 0.4s ease';setTimeout(()=>el.style.animation='',500);}
+function upChar(){const t=document.getElementById('message');document.getElementById('cc').textContent=t.value.length+' / 300';}
+function upd(){
+  const ids=['parentName','phone','email','childName','age','grade'];
+  let d=ids.filter(id=>document.getElementById(id).value.trim()).length;
+  if(document.querySelector('input[name="exp"]:checked'))d++;
+  const p=Math.round((d/7)*100);
+  document.getElementById('pb').style.width=p+'%';
+  document.getElementById('pct').textContent=p+'%';
+}
+async function go(){
+  const ids=['parentName','phone','email','childName','age','grade'];
+  for(const id of ids){const el=document.getElementById(id);if(!el.value.trim()){el.focus();el.classList.add('err');shk(el);setTimeout(()=>el.classList.remove('err'),2500);return;}}
+  const exp=document.querySelector('input[name="exp"]:checked');
+  if(!exp){shk(document.getElementById('expGroup'));return;}
+  const btn=document.getElementById('btn');btn.disabled=true;document.getElementById('btxt').textContent='Sending…';
+  const expMap={none:'Complete Beginner',little:'Tried a Little',some:'Some Python Experience'};
+  const payload={parentName:document.getElementById('parentName').value.trim(),phone:document.getElementById('phone').value.trim(),email:document.getElementById('email').value.trim(),childName:document.getElementById('childName').value.trim(),age:document.getElementById('age').value,grade:document.getElementById('grade').value,exp:exp.value,source:[...document.querySelectorAll('.co.on')].map(e=>e.textContent.trim()).join(', ')||'Not specified',message:document.getElementById('message').value.trim()||'None'};
+  try{await fetch('/.netlify/functions/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});}catch(e){}
+  document.getElementById('formCard').style.display='none';
+  const s=document.getElementById('suc');s.classList.add('show');s.scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
